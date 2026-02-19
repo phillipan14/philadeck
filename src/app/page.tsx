@@ -16,39 +16,60 @@ import { themes } from "@/lib/themes/presets";
 const features = [
   {
     icon: Cpu,
-    title: "AI Generation",
+    title: "Multi-model AI",
     description:
-      "Multi-model support. Describe your topic and get a complete, structured deck in seconds.",
+      "Bring your own API key. Works with GPT-4o, Claude Sonnet, and Gemini Flash \u2014 pick the model that fits your style.",
   },
   {
     icon: Palette,
-    title: "12 Themes",
+    title: "12 handcrafted themes",
     description:
-      "Handcrafted color palettes with instant one-click switching between styles.",
+      "From minimal to neon, every theme is designed to make your content look polished and intentional. Switch instantly.",
   },
   {
     icon: LayoutGrid,
-    title: "9 Content Blocks",
+    title: "Rich content blocks",
     description:
-      "Text, charts, timelines, diagrams, and more. Rich building blocks for any story.",
+      "Text, charts, timelines, diagrams, quotes, and more. Nine block types to build any story you can imagine.",
   },
   {
     icon: Download,
-    title: "PPTX Export",
+    title: "Export to PowerPoint",
     description:
-      "Download as PowerPoint. Compatible with Google Slides and Keynote.",
+      "Download native PPTX files. Open in PowerPoint, Google Slides, or Keynote \u2014 colors, fonts, and layout preserved.",
   },
   {
     icon: Presentation,
-    title: "Presentation Mode",
+    title: "Present from anywhere",
     description:
-      "Fullscreen playback with smooth transitions. Present directly from your browser.",
+      "Fullscreen slideshow with fade transitions, keyboard navigation, and an elapsed timer. No extra software needed.",
   },
   {
     icon: Keyboard,
-    title: "Keyboard Shortcuts",
+    title: "Built for speed",
     description:
-      "Undo, redo, copy, paste, and navigate. Built for speed and flow.",
+      "Undo, redo, copy, paste, duplicate slides, and navigate \u2014 all from your keyboard. Zero friction.",
+  },
+];
+
+const steps = [
+  {
+    number: "1",
+    title: "Describe your idea",
+    description:
+      "Tell AI what your presentation is about. A single sentence or a detailed brief \u2014 it works either way.",
+  },
+  {
+    number: "2",
+    title: "Review and customize",
+    description:
+      "Edit the generated outline, swap themes, rearrange slides, and add your own content blocks.",
+  },
+  {
+    number: "3",
+    title: "Present and export",
+    description:
+      "Go fullscreen with one click, or download as PowerPoint. Share with anyone, anywhere.",
   },
 ];
 
@@ -56,101 +77,119 @@ const allThemeIds = Object.keys(themes) as Array<keyof typeof themes>;
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0B0014]">
       {/* Navigation */}
-      <nav className="fixed top-0 z-50 w-full border-b border-zinc-100 bg-white/80 backdrop-blur-xl">
+      <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-[#0B0014]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-2.5">
-            <Layers className="h-5 w-5 text-zinc-900" />
-            <span className="font-[family-name:var(--font-space-grotesk)] text-lg font-semibold tracking-tight text-zinc-900">
+            <Layers className="h-5 w-5 text-purple-400" />
+            <span className="font-[family-name:var(--font-space-grotesk)] text-lg font-semibold tracking-tight text-white">
               PhilaDeck
             </span>
           </div>
-          <Link
-            href="/editor/new"
-            className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-zinc-800 hover:shadow-sm"
-          >
-            Get Started
-          </Link>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/phillipan14/philadeck"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-white"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
+            <Link
+              href="/editor/new"
+              className="rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-medium text-white transition-all hover:from-purple-500 hover:to-pink-500 hover:shadow-lg hover:shadow-purple-500/25"
+            >
+              Get Started Free
+            </Link>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white pt-16">
+      <section className="relative overflow-hidden pt-16">
+        {/* Background gradient orbs */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full bg-purple-600/20 blur-[128px]" />
+          <div className="absolute -right-40 top-40 h-[400px] w-[400px] rounded-full bg-pink-600/15 blur-[128px]" />
+          <div className="absolute left-1/2 top-60 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-purple-500/10 blur-[100px]" />
+        </div>
+
         <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-32 text-center sm:pb-32 sm:pt-40">
-          {/* Animated badge */}
-          <div className="animate-fade-in-up mb-8 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-4 py-1.5 text-sm text-zinc-500">
-            <Sparkles className="h-3.5 w-3.5 text-zinc-400 animate-subtle-pulse" />
-            AI-powered presentation maker
+          {/* Powered by AI badge */}
+          <div className="animate-fade-in-up mb-8 inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-1.5 text-sm text-purple-300 backdrop-blur-sm">
+            <Sparkles className="h-3.5 w-3.5 text-purple-400 animate-subtle-pulse" />
+            Powered by AI
           </div>
 
           {/* Title */}
-          <h1 className="animate-fade-in-up animation-delay-200 mx-auto max-w-4xl font-[family-name:var(--font-space-grotesk)] text-4xl font-bold leading-[1.1] tracking-tight text-zinc-900 sm:text-5xl md:text-6xl lg:text-7xl">
-            Create presentations that{" "}
-            <span className="font-[family-name:var(--font-space-grotesk)] italic text-zinc-400">
-              speak for themselves
+          <h1 className="animate-fade-in-up animation-delay-200 mx-auto max-w-4xl font-[family-name:var(--font-space-grotesk)] text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            A new medium for{" "}
+            <span className="gradient-text italic">
+              presenting ideas
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="animate-fade-in-up animation-delay-400 mx-auto mt-6 max-w-xl text-lg leading-relaxed text-zinc-500">
-            Describe what you need. AI builds the deck. Export and present.
-            No signup, no friction.
+          <p className="animate-fade-in-up animation-delay-400 mx-auto mt-6 max-w-xl text-lg leading-relaxed text-zinc-400">
+            Beautiful, engaging presentations with none of the formatting and
+            design work. Just describe your topic and let AI do the rest.
           </p>
 
           {/* CTAs */}
           <div className="animate-fade-in-up animation-delay-600 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/editor/new"
-              className="group inline-flex h-12 items-center gap-2 rounded-xl bg-zinc-900 px-8 text-base font-medium text-white shadow-sm transition-all hover:bg-zinc-800 hover:shadow-md"
+              className="group inline-flex h-12 items-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 text-base font-medium text-white shadow-lg shadow-purple-500/25 transition-all hover:from-purple-500 hover:to-pink-500 hover:shadow-xl hover:shadow-purple-500/30 gradient-glow"
             >
-              Start creating
+              Start creating &mdash; it&apos;s free
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
-              href="#themes"
-              className="inline-flex h-12 items-center gap-2 rounded-xl border border-zinc-200 px-8 text-base font-medium text-zinc-600 transition-all hover:border-zinc-300 hover:bg-zinc-50"
+              href="#how-it-works"
+              className="inline-flex h-12 items-center gap-2 rounded-xl border border-purple-500/20 px-8 text-base font-medium text-purple-300 transition-all hover:border-purple-500/40 hover:bg-purple-500/5"
             >
-              View templates
+              See how it works
             </Link>
           </div>
 
           {/* Editor Mockup */}
           <div className="animate-fade-in-up animation-delay-800 relative mx-auto mt-20 max-w-4xl">
-            <div className="animate-float rounded-2xl border border-zinc-200 bg-white p-1.5 shadow-xl shadow-zinc-200/50">
+            <div className="animate-float rounded-2xl border border-purple-500/10 bg-[#110020] p-1.5 shadow-2xl shadow-purple-500/10">
               {/* Title bar */}
-              <div className="flex items-center gap-2 rounded-t-xl bg-zinc-50 px-4 py-2.5">
+              <div className="flex items-center gap-2 rounded-t-xl bg-[#1a0030] px-4 py-2.5">
                 <div className="flex gap-1.5">
-                  <div className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-purple-500/30" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-purple-500/20" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-purple-500/20" />
                 </div>
-                <div className="ml-4 h-2 w-32 rounded-full bg-zinc-200" />
+                <div className="ml-4 h-2 w-32 rounded-full bg-purple-500/15" />
               </div>
 
               {/* Editor layout: 3 panels */}
-              <div className="flex overflow-hidden rounded-b-xl border-t border-zinc-100">
+              <div className="flex overflow-hidden rounded-b-xl border-t border-purple-500/10">
                 {/* Left panel - slide thumbnails */}
-                <div className="hidden w-44 flex-shrink-0 border-r border-zinc-100 bg-zinc-50/50 p-3 sm:block">
+                <div className="hidden w-44 flex-shrink-0 border-r border-purple-500/10 bg-[#0f001a]/50 p-3 sm:block">
                   <div className="space-y-2.5">
                     {[0, 1, 2, 3].map((i) => (
                       <div
                         key={i}
                         className={`aspect-video w-full rounded-md border ${
                           i === 0
-                            ? "border-zinc-300 bg-white shadow-sm"
-                            : "border-zinc-150 bg-zinc-100/50"
+                            ? "border-purple-500/30 bg-[#1a0030] shadow-sm shadow-purple-500/10"
+                            : "border-purple-500/10 bg-[#110020]/50"
                         }`}
                       >
                         <div className="flex h-full flex-col items-center justify-center gap-1 p-2">
                           <div
                             className={`h-1 w-3/4 rounded-full ${
-                              i === 0 ? "bg-zinc-300" : "bg-zinc-200"
+                              i === 0 ? "bg-purple-400/40" : "bg-purple-500/15"
                             }`}
                           />
                           <div
                             className={`h-0.5 w-1/2 rounded-full ${
-                              i === 0 ? "bg-zinc-200" : "bg-zinc-150"
+                              i === 0 ? "bg-purple-400/25" : "bg-purple-500/10"
                             }`}
                           />
                         </div>
@@ -160,43 +199,43 @@ export default function Home() {
                 </div>
 
                 {/* Center panel - main slide */}
-                <div className="flex-1 bg-white p-6 sm:p-8">
-                  <div className="mx-auto aspect-video max-w-lg rounded-lg border border-zinc-100 bg-zinc-50/30 p-6 sm:p-8">
+                <div className="flex-1 bg-[#110020] p-6 sm:p-8">
+                  <div className="mx-auto aspect-video max-w-lg rounded-lg border border-purple-500/10 bg-[#0f001a]/50 p-6 sm:p-8">
                     <div className="flex h-full flex-col items-center justify-center gap-3">
-                      <div className="h-2 w-16 rounded-full bg-zinc-200" />
-                      <div className="h-4 w-48 rounded-md bg-zinc-900/10" />
-                      <div className="h-1.5 w-36 rounded-full bg-zinc-200/80" />
+                      <div className="h-2 w-16 rounded-full bg-purple-500/20" />
+                      <div className="h-4 w-48 rounded-md bg-purple-400/15" />
+                      <div className="h-1.5 w-36 rounded-full bg-purple-500/10" />
                       <div className="mt-3 flex gap-2.5">
-                        <div className="h-10 w-16 rounded-md bg-zinc-100 sm:h-14 sm:w-20" />
-                        <div className="h-10 w-16 rounded-md bg-zinc-100 sm:h-14 sm:w-20" />
-                        <div className="h-10 w-16 rounded-md bg-zinc-100 sm:h-14 sm:w-20" />
+                        <div className="h-10 w-16 rounded-md bg-purple-500/10 sm:h-14 sm:w-20" />
+                        <div className="h-10 w-16 rounded-md bg-pink-500/10 sm:h-14 sm:w-20" />
+                        <div className="h-10 w-16 rounded-md bg-purple-500/10 sm:h-14 sm:w-20" />
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Right panel - properties */}
-                <div className="hidden w-52 flex-shrink-0 border-l border-zinc-100 bg-zinc-50/50 p-4 lg:block">
+                <div className="hidden w-52 flex-shrink-0 border-l border-purple-500/10 bg-[#0f001a]/50 p-4 lg:block">
                   <div className="space-y-4">
                     <div>
-                      <div className="h-1.5 w-12 rounded-full bg-zinc-300" />
-                      <div className="mt-2.5 h-7 w-full rounded-md border border-zinc-200 bg-white" />
+                      <div className="h-1.5 w-12 rounded-full bg-purple-400/30" />
+                      <div className="mt-2.5 h-7 w-full rounded-md border border-purple-500/15 bg-[#1a0030]" />
                     </div>
                     <div>
-                      <div className="h-1.5 w-16 rounded-full bg-zinc-300" />
+                      <div className="h-1.5 w-16 rounded-full bg-purple-400/30" />
                       <div className="mt-2.5 flex gap-1.5">
-                        <div className="h-6 w-6 rounded-md bg-zinc-900" />
-                        <div className="h-6 w-6 rounded-md bg-zinc-200" />
-                        <div className="h-6 w-6 rounded-md bg-zinc-100" />
-                        <div className="h-6 w-6 rounded-md border border-zinc-200 bg-white" />
+                        <div className="h-6 w-6 rounded-md bg-purple-600" />
+                        <div className="h-6 w-6 rounded-md bg-pink-500/40" />
+                        <div className="h-6 w-6 rounded-md bg-purple-500/20" />
+                        <div className="h-6 w-6 rounded-md border border-purple-500/15 bg-[#1a0030]" />
                       </div>
                     </div>
                     <div>
-                      <div className="h-1.5 w-10 rounded-full bg-zinc-300" />
-                      <div className="mt-2.5 h-7 w-full rounded-md border border-zinc-200 bg-white" />
+                      <div className="h-1.5 w-10 rounded-full bg-purple-400/30" />
+                      <div className="mt-2.5 h-7 w-full rounded-md border border-purple-500/15 bg-[#1a0030]" />
                     </div>
                     <div className="pt-2">
-                      <div className="h-8 w-full rounded-md bg-zinc-900" />
+                      <div className="h-8 w-full rounded-md bg-gradient-to-r from-purple-600 to-pink-600" />
                     </div>
                   </div>
                 </div>
@@ -204,44 +243,71 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Trust strip */}
-        <div className="border-t border-zinc-100 bg-zinc-50/50 py-6">
-          <div className="mx-auto max-w-6xl px-6">
-            <p className="text-center text-sm text-zinc-400">
-              Built with Next.js, Vercel AI SDK, and Recharts
+      {/* How It Works Section */}
+      <section id="how-it-works" className="relative border-t border-white/5 bg-[#0B0014] py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-400">
+              How it works
             </p>
+            <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              From idea to presentation in seconds
+            </h2>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {steps.map((step) => (
+              <div
+                key={step.number}
+                className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-7 transition-all duration-300 hover:border-purple-500/20 hover:bg-purple-500/[0.03]"
+              >
+                <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-pink-600 text-sm font-bold text-white shadow-lg shadow-purple-500/20">
+                  {step.number}
+                </div>
+                <h3 className="text-lg font-semibold text-white">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                  {step.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-6">
+      <section id="features" className="relative border-t border-white/5 bg-[#0B0014] py-24 sm:py-32">
+        {/* Subtle background glow */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/5 blur-[128px]" />
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-400">
               Features
             </p>
-            <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
-              Everything you need, nothing you don&apos;t
+            <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Everything you need to tell your story
             </h2>
           </div>
 
           <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
                 key={feature.title}
-                className={`group relative rounded-2xl border border-zinc-100 p-7 transition-all duration-300 hover:border-zinc-200 hover:shadow-lg hover:shadow-zinc-100/80 ${
-                  index % 2 === 1 ? "bg-zinc-50/50" : "bg-white"
-                }`}
+                className="glass-card group relative rounded-2xl p-7 transition-all duration-300 hover:border-purple-500/20 hover:bg-purple-500/[0.03]"
               >
-                <div className="mb-4 inline-flex rounded-xl bg-zinc-100 p-2.5 text-zinc-600 transition-colors group-hover:bg-zinc-900 group-hover:text-white">
+                <div className="mb-4 inline-flex rounded-xl bg-purple-500/10 p-2.5 text-purple-400 transition-colors group-hover:bg-purple-500/20 group-hover:text-purple-300">
                   <feature.icon className="h-5 w-5" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-base font-semibold text-zinc-900">
+                <h3 className="text-base font-semibold text-white">
                   {feature.title}
                 </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
+                <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
                   {feature.description}
                 </p>
               </div>
@@ -251,18 +317,18 @@ export default function Home() {
       </section>
 
       {/* Theme Showcase Section */}
-      <section id="themes" className="border-t border-zinc-100 bg-zinc-50 py-24 sm:py-32">
+      <section id="themes" className="relative border-t border-white/5 bg-[#080010] py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-400">
               Themes
             </p>
-            <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
-              12 handcrafted themes
+            <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Switch themes in one click
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-base text-zinc-500">
-              Switch between themes instantly. Every palette is designed to make
-              your content look polished and intentional.
+            <p className="mx-auto mt-4 max-w-lg text-base text-zinc-400">
+              Every palette is designed to make your slides look polished
+              without touching a color picker.
             </p>
           </div>
 
@@ -272,7 +338,7 @@ export default function Home() {
               return (
                 <div
                   key={themeId}
-                  className="group relative overflow-hidden rounded-xl border border-zinc-200/80 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-zinc-300"
+                  className="group relative overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 hover:border-purple-500/20"
                 >
                   {/* Mini slide preview */}
                   <div
@@ -330,11 +396,11 @@ export default function Home() {
                     </div>
                   </div>
                   {/* Theme info */}
-                  <div className="border-t border-zinc-100 bg-white px-4 py-3">
-                    <p className="text-sm font-medium text-zinc-900">
+                  <div className="border-t border-white/5 bg-[#0B0014] px-4 py-3">
+                    <p className="text-sm font-medium text-white">
                       {theme.name}
                     </p>
-                    <p className="mt-0.5 text-xs text-zinc-400">
+                    <p className="mt-0.5 text-xs text-zinc-500">
                       {theme.description}
                     </p>
                   </div>
@@ -346,32 +412,46 @@ export default function Home() {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-2xl px-6 text-center">
-          <div className="rounded-2xl border border-dashed border-zinc-200 px-8 py-16">
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
-              Ready to create?
+      <section className="relative border-t border-white/5 py-24 sm:py-32">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-purple-600/20 to-pink-600/20 blur-[128px]" />
+        </div>
+        <div className="relative mx-auto max-w-2xl px-6 text-center">
+          <div className="rounded-2xl border border-purple-500/10 bg-gradient-to-br from-purple-500/[0.08] to-pink-500/[0.08] px-8 py-16 backdrop-blur-sm">
+            <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Ready to build something beautiful?
             </h2>
-            <p className="mt-4 text-base text-zinc-500">
-              No account needed. No credit card. Just start building.
+            <p className="mt-4 text-base text-zinc-400">
+              No account needed. No credit card. Just start creating.
             </p>
             <Link
               href="/editor/new"
-              className="group mt-8 inline-flex h-12 items-center gap-2 rounded-xl bg-zinc-900 px-8 text-base font-medium text-white shadow-sm transition-all hover:bg-zinc-800 hover:shadow-md"
+              className="group mt-8 inline-flex h-12 items-center gap-2 rounded-xl bg-white px-8 text-base font-medium text-[#0B0014] shadow-lg transition-all hover:bg-zinc-100 hover:shadow-xl"
             >
-              Get started — it&apos;s free
+              Get started &mdash; it&apos;s free
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
+            <div className="mt-4">
+              <a
+                href="https://github.com/phillipan14/philadeck"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-purple-400"
+              >
+                <Github className="h-3.5 w-3.5" />
+                Open source on GitHub
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-100 bg-zinc-50 py-8">
+      <footer className="border-t border-white/5 bg-[#080010] py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 sm:flex-row sm:justify-between">
-          <div className="flex items-center gap-2 text-sm text-zinc-400">
-            <Layers className="h-4 w-4" />
-            <span className="font-[family-name:var(--font-space-grotesk)] font-medium">
+          <div className="flex items-center gap-2 text-sm text-zinc-500">
+            <Layers className="h-4 w-4 text-purple-400/60" />
+            <span className="font-[family-name:var(--font-space-grotesk)] font-medium text-zinc-400">
               PhilaDeck
             </span>
           </div>
@@ -380,12 +460,12 @@ export default function Home() {
               href="https://github.com/phillipan14/philadeck"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-zinc-600"
+              className="inline-flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-purple-400"
             >
               <Github className="h-4 w-4" />
               GitHub
             </a>
-            <span className="text-sm text-zinc-300">
+            <span className="text-sm text-zinc-600">
               Built by Phillip An
             </span>
           </div>

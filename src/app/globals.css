@@ -184,10 +184,10 @@
   z-index: 1;
 }
 
-/* Subtle glow for CTA buttons */
+/* Subtle glow for CTA buttons — purple glow */
 @keyframes subtleGlow {
-  0%, 100% { box-shadow: 0 0 12px oklch(0.205 0 0 / 15%); }
-  50% { box-shadow: 0 0 20px oklch(0.205 0 0 / 25%); }
+  0%, 100% { box-shadow: 0 0 12px rgba(124, 58, 237, 0.25); }
+  50% { box-shadow: 0 0 24px rgba(124, 58, 237, 0.4); }
 }
 
 .dark .animate-subtle-glow {
@@ -195,12 +195,50 @@
 }
 
 @keyframes subtleGlowDark {
-  0%, 100% { box-shadow: 0 0 12px oklch(0.922 0 0 / 10%); }
-  50% { box-shadow: 0 0 20px oklch(0.922 0 0 / 20%); }
+  0%, 100% { box-shadow: 0 0 12px rgba(124, 58, 237, 0.15); }
+  50% { box-shadow: 0 0 24px rgba(124, 58, 237, 0.3); }
 }
 
 .animate-subtle-glow {
   animation: subtleGlow 3s ease-in-out infinite;
+}
+
+/* Gradient text — purple to pink */
+.gradient-text {
+  background: linear-gradient(135deg, #7C3AED, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass-morphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Purple/pink glow animation for CTA buttons */
+@keyframes gradientGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.15); }
+  50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.4), 0 0 80px rgba(236, 72, 153, 0.2); }
+}
+
+.gradient-glow {
+  animation: gradientGlow 3s ease-in-out infinite;
+}
+
+/* Animated gradient background */
+@keyframes animateGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: animateGradient 6s ease infinite;
 }
 
 /* Checkmark animation for theme selector */

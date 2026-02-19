@@ -6,6 +6,18 @@
 
 ---
 
+## Screenshots
+
+| Landing Page | Template Gallery |
+|:---:|:---:|
+| ![Landing Page](public/screenshots/landing-page.png) | ![Template Gallery](public/screenshots/template-gallery.png) |
+
+| Slide Editor | Theme Selector |
+|:---:|:---:|
+| ![Editor](public/screenshots/editor.png) | ![Themes](public/screenshots/theme-selector.png) |
+
+---
+
 ## Features
 
 - **AI-Powered Generation** -- Describe your topic, review an editable outline, then generate a full deck. Supports GPT-4o, Claude Sonnet, and Gemini Flash.
