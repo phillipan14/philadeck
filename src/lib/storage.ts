@@ -1,6 +1,6 @@
 import type { Presentation } from "@/types/presentation";
 
-const STORAGE_PREFIX = "deckforge_pres_";
+const STORAGE_PREFIX = "philadeck_pres_";
 
 /**
  * Save a presentation to localStorage.
@@ -13,7 +13,7 @@ export function savePresentation(presentation: Presentation): void {
     const data = JSON.stringify(presentation);
     localStorage.setItem(key, data);
   } catch (error) {
-    console.error("[DeckForge] Failed to save presentation:", error);
+    console.error("[PhilaDeck] Failed to save presentation:", error);
   }
 }
 
@@ -30,7 +30,7 @@ export function loadPresentation(id: string): Presentation | null {
     if (!data) return null;
     return JSON.parse(data) as Presentation;
   } catch (error) {
-    console.error("[DeckForge] Failed to load presentation:", error);
+    console.error("[PhilaDeck] Failed to load presentation:", error);
     return null;
   }
 }
@@ -79,7 +79,7 @@ export function listPresentations(): Array<{
 
     return presentations;
   } catch (error) {
-    console.error("[DeckForge] Failed to list presentations:", error);
+    console.error("[PhilaDeck] Failed to list presentations:", error);
     return [];
   }
 }
@@ -94,6 +94,6 @@ export function deletePresentation(id: string): void {
     const key = `${STORAGE_PREFIX}${id}`;
     localStorage.removeItem(key);
   } catch (error) {
-    console.error("[DeckForge] Failed to delete presentation:", error);
+    console.error("[PhilaDeck] Failed to delete presentation:", error);
   }
 }

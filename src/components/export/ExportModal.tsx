@@ -39,7 +39,7 @@ export function ExportModal({ children }: ExportModalProps) {
       const theme = getTheme(presentation.themeId);
       await exportToPptx(presentation, theme);
     } catch (error) {
-      console.error("[DeckForge] PPTX export failed:", error);
+      console.error("[PhilaDeck] PPTX export failed:", error);
       alert("Export failed. Please try again.");
     } finally {
       setExporting(null);
@@ -53,7 +53,7 @@ export function ExportModal({ children }: ExportModalProps) {
     try {
       await exportToPdf(presentation.id);
     } catch (error) {
-      console.error("[DeckForge] PDF export failed:", error);
+      console.error("[PhilaDeck] PDF export failed:", error);
       alert("PDF export failed. Please try again.");
     } finally {
       setExporting(null);

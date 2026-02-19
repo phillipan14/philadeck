@@ -1,5 +1,5 @@
 /**
- * PDF export for DeckForge presentations.
+ * PDF export for PhilaDeck presentations.
  *
  * This module uses html2canvas to capture rendered slide DOM elements
  * and jsPDF to assemble them into a downloadable PDF document.

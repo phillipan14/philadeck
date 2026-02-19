@@ -14,8 +14,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 
-const STORAGE_KEY = 'deckforge_api_keys';
-const PROVIDER_KEY = 'deckforge_selected_provider';
+const STORAGE_KEY = 'philadeck_api_keys';
+const PROVIDER_KEY = 'philadeck_selected_provider';
 
 interface APIKeys {
   openai?: string;

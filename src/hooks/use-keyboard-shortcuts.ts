@@ -18,7 +18,7 @@ function isEditableTarget(target: EventTarget | null): boolean {
 }
 
 /**
- * Hook that registers global keyboard shortcuts for the DeckForge editor.
+ * Hook that registers global keyboard shortcuts for the PhilaDeck editor.
  *
  * Shortcuts:
  * - Cmd/Ctrl + Z        → undo

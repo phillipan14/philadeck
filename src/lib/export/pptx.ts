@@ -289,7 +289,7 @@ export async function exportToPptx(
   // Configure the presentation
   pptx.layout = "LAYOUT_WIDE"; // 16:9 (13.33" x 7.5") - closest built-in to our model
   pptx.title = presentation.title;
-  pptx.author = "DeckForge";
+  pptx.author = "PhilaDeck";
 
   for (const slideData of presentation.slides) {
     const slide = pptx.addSlide();

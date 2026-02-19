@@ -13,11 +13,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "DeckForge — AI Presentation Maker",
+  title: "PhilaDeck — AI Presentation Maker",
   description:
     "Create beautiful presentations with AI. Generate stunning slide decks in seconds from a simple prompt. Export to PPTX or PDF.",
   openGraph: {
-    title: "DeckForge — AI Presentation Maker",
+    title: "PhilaDeck — AI Presentation Maker",
     description:
       "Create beautiful presentations with AI. Generate stunning slide decks in seconds.",
     type: "website",

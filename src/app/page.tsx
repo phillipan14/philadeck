@@ -63,7 +63,7 @@ export default function Home() {
           <div className="flex items-center gap-2.5">
             <Layers className="h-5 w-5 text-zinc-900" />
             <span className="font-[family-name:var(--font-space-grotesk)] text-lg font-semibold tracking-tight text-zinc-900">
-              DeckForge
+              PhilaDeck
             </span>
           </div>
           <Link
@@ -372,12 +372,12 @@ export default function Home() {
           <div className="flex items-center gap-2 text-sm text-zinc-400">
             <Layers className="h-4 w-4" />
             <span className="font-[family-name:var(--font-space-grotesk)] font-medium">
-              DeckForge
+              PhilaDeck
             </span>
           </div>
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com/phillipan14/deckforge"
+              href="https://github.com/phillipan14/philadeck"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-zinc-600"

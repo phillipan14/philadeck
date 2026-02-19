@@ -1,8 +1,8 @@
-# DeckForge
+# PhilaDeck
 
 **AI-powered presentation maker.** Create beautiful slide decks in seconds -- no signup required.
 
-[Live Demo](https://deckforge.vercel.app) · [Report Bug](https://github.com/phillipan14/deckforge/issues) · [Request Feature](https://github.com/phillipan14/deckforge/issues)
+[Live Demo](https://philadeck.vercel.app) · [Report Bug](https://github.com/phillipan14/philadeck/issues) · [Request Feature](https://github.com/phillipan14/philadeck/issues)
 
 ---
 
@@ -43,8 +43,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/phillipan14/deckforge.git
-cd deckforge
+git clone https://github.com/phillipan14/philadeck.git
+cd philadeck
 
 # Install dependencies
 npm install
@@ -57,7 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) and click **Create Presentat
 
 ## AI Setup
 
-DeckForge supports three AI providers. API keys are entered in the app's settings panel and stored in your browser's localStorage -- they are never sent to any server other than the provider's own API.
+PhilaDeck supports three AI providers. API keys are entered in the app's settings panel and stored in your browser's localStorage -- they are never sent to any server other than the provider's own API.
 
 1. Click the **Settings** (gear) icon in the AI prompt modal.
 2. Select your provider: **OpenAI**, **Anthropic**, or **Google**.
@@ -74,7 +74,7 @@ DeckForge supports three AI providers. API keys are entered in the app's setting
 
 Deploy your own instance with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/phillipan14/deckforge)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/phillipan14/philadeck)
 
 Optionally set the `UNSPLASH_ACCESS_KEY` environment variable to enable image search. Without it, image blocks fall back to placeholder graphics.
 
