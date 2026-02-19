@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import { PanelLeftClose, PanelRightClose, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,10 +20,15 @@ import PropertyPanel from './PropertyPanel';
 import ThemeSelector from '@/components/theme/ThemeSelector';
 import AIPromptModal from '@/components/ai/AIPromptModal';
 import TemplateGallery from '@/components/templates/TemplateGallery';
+import { sampleDecks } from '@/lib/samples';
 import type { TemplateDefinition } from '@/lib/templates';
 import type { Presentation, Slide, ContentBlock } from '@/types/presentation';
 
-export default function EditorLayout() {
+interface EditorLayoutProps {
+  sampleId?: string;
+}
+
+export default function EditorLayout({ sampleId }: EditorLayoutProps) {
   const presentation = usePresentationStore((s) => s.presentation);
   const createPresentation = usePresentationStore(
     (s) => s.createPresentation,
@@ -37,6 +42,60 @@ export default function EditorLayout() {
 
   useAutoSave();
   useKeyboardShortcuts();
+
+  // Auto-load a sample deck when sampleId is provided and no presentation is loaded
+  const sampleLoadedRef = useRef(false);
+  useEffect(() => {
+    if (sampleId && !presentation && !sampleLoadedRef.current) {
+      const sample = sampleDecks.find((s) => s.id === sampleId);
+      if (sample && 'slides' in sample) {
+        sampleLoadedRef.current = true;
+        // Re-use the same template-to-presentation conversion logic
+        const templateLike = sample as unknown as TemplateDefinition;
+        const freshSlides: Slide[] = templateLike.slides.map((slide, idx) => {
+          const newBlocks: ContentBlock[] = slide.content.map((block) => {
+            const newBlock = { ...block, id: `block_${nanoid(8)}` };
+            if (newBlock.type === 'list') {
+              return {
+                ...newBlock,
+                items: (
+                  newBlock as ContentBlock & {
+                    items: Array<{ id: string; text: string }>;
+                  }
+                ).items.map((item: { id: string; text: string }) => ({
+                  ...item,
+                  id: `item_${nanoid(6)}`,
+                })),
+              };
+            }
+            return newBlock;
+          });
+          return {
+            ...slide,
+            id: `slide_${nanoid(8)}`,
+            index: idx,
+            content: newBlocks,
+          };
+        });
+
+        const newPresentation: Presentation = {
+          id: `pres_${nanoid(8)}`,
+          title: sample.name,
+          description: sample.description,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          themeId: sample.themeId,
+          slides: freshSlides,
+          metadata: {
+            slideCount: freshSlides.length,
+            aspectRatio: '16:9',
+          },
+        };
+
+        loadPresentation(newPresentation);
+      }
+    }
+  }, [sampleId, presentation, loadPresentation]);
 
   const handleCreate = useCallback(() => {
     createPresentation();

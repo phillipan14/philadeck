@@ -1,5 +1,10 @@
 import EditorLayout from '@/components/editor/EditorLayout';
 
-export default function EditorPage() {
-  return <EditorLayout />;
+interface EditorPageProps {
+  searchParams: Promise<{ sample?: string }>;
+}
+
+export default async function EditorPage({ searchParams }: EditorPageProps) {
+  const params = await searchParams;
+  return <EditorLayout sampleId={params.sample} />;
 }

@@ -12,6 +12,7 @@ import {
   Cpu,
 } from "lucide-react";
 import { themes } from "@/lib/themes/presets";
+import { sampleDecks } from "@/lib/samples";
 
 const features = [
   {
@@ -274,6 +275,90 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Decks Gallery Section */}
+      <section id="gallery" className="relative border-t border-white/5 bg-[#0B0014] py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-400">
+              Gallery
+            </p>
+            <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              See what you can build
+            </h2>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {sampleDecks.slice(0, 4).map((deck) => {
+              const theme = themes[deck.themeId];
+              const bgColor = theme?.colors.background || '#1a1a2e';
+              const headingColor = theme?.colors.heading || '#fff';
+              const textColor = theme?.colors.text || '#aaa';
+
+              return (
+                <Link
+                  key={deck.id}
+                  href={`/editor/new?sample=${deck.id}`}
+                  className="glass-card group relative overflow-hidden rounded-2xl transition-all duration-300 hover:border-purple-500/20 hover:bg-purple-500/[0.03] hover:shadow-lg hover:shadow-purple-500/10 hover:scale-[1.02]"
+                >
+                  {/* Mini preview */}
+                  <div
+                    className="aspect-video p-4"
+                    style={{ backgroundColor: bgColor }}
+                  >
+                    <div className="flex h-full flex-col items-center justify-center gap-2">
+                      <div
+                        className="h-2 w-16 rounded-full"
+                        style={{
+                          backgroundColor: deck.accentColor,
+                          opacity: 0.6,
+                        }}
+                      />
+                      <p
+                        className="text-xs font-semibold truncate max-w-[80%]"
+                        style={{ color: headingColor }}
+                      >
+                        {deck.name}
+                      </p>
+                      <div
+                        className="h-1 w-12 rounded-full"
+                        style={{
+                          backgroundColor: textColor,
+                          opacity: 0.3,
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Card info */}
+                  <div className="border-t border-white/5 px-4 py-3.5">
+                    <p className="text-sm font-medium text-white group-hover:text-purple-300 transition-colors duration-200">
+                      {deck.name}
+                    </p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2 py-0.5 text-[11px] font-medium text-zinc-400">
+                        <Layers className="h-3 w-3" />
+                        {deck.slideCount}
+                      </span>
+                      <span
+                        className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
+                          deck.category === 'business'
+                            ? 'bg-blue-500/15 text-blue-300'
+                            : deck.category === 'education'
+                              ? 'bg-green-500/15 text-green-300'
+                              : 'bg-purple-500/15 text-purple-300'
+                        }`}
+                      >
+                        {deck.category}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
