@@ -141,6 +141,8 @@ export default function AIPromptModal({
           className="sm:max-w-3xl max-h-[85vh] flex flex-col p-0 gap-0 overflow-hidden"
           showCloseButton={!loading}
         >
+          {/* Subtle gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.02] via-transparent to-transparent dark:from-primary/[0.04] pointer-events-none rounded-lg" />
           {/* Show outline editor if outline is ready */}
           {outline ? (
             <OutlineEditor
@@ -151,25 +153,25 @@ export default function AIPromptModal({
             />
           ) : (
             /* Prompt input view */
-            <div className="flex flex-col">
+            <div className="flex flex-col relative">
               <DialogHeader className="p-6 pb-0">
-                <DialogTitle className="flex items-center gap-2 text-xl">
-                  <Sparkles className="h-5 w-5" />
+                <DialogTitle className="flex items-center gap-2.5 text-xl">
+                  <Sparkles className="h-5 w-5 text-primary" />
                   Create with AI
                 </DialogTitle>
-                <DialogDescription>
+                <DialogDescription className="text-zinc-500 dark:text-zinc-400">
                   Describe the presentation you want and AI will generate an
                   outline for you to review.
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="p-6 space-y-4">
+              <div className="p-6 space-y-5">
                 {/* Prompt textarea */}
                 <Textarea
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="Describe the presentation you want to create..."
-                  className="min-h-[120px] text-base resize-none"
+                  className="min-h-[140px] text-base resize-none rounded-xl border-zinc-200/60 dark:border-zinc-700/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all duration-200"
                   disabled={loading}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && e.metaKey) {
@@ -179,8 +181,8 @@ export default function AIPromptModal({
                 />
 
                 {/* Example prompts */}
-                <div className="space-y-2">
-                  <p className="text-xs text-muted-foreground font-medium">
+                <div className="space-y-3">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
                     Try an example:
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -190,7 +192,7 @@ export default function AIPromptModal({
                         type="button"
                         onClick={() => setPrompt(example)}
                         disabled={loading}
-                        className="text-xs px-3 py-1.5 rounded-full border border-border bg-muted/50 text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted transition-colors disabled:opacity-50"
+                        className="text-xs px-3.5 py-2 rounded-full border border-zinc-200/80 dark:border-zinc-700/80 bg-zinc-50/50 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:border-primary/40 hover:bg-primary/[0.04] dark:hover:bg-primary/[0.08] transition-all duration-200 disabled:opacity-50"
                       >
                         {example}
                       </button>
@@ -200,13 +202,13 @@ export default function AIPromptModal({
 
                 {/* Error message */}
                 {error && (
-                  <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-3">
+                  <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-3.5">
                     <p className="text-sm text-destructive">{error}</p>
                   </div>
                 )}
 
                 {/* Footer: Model selector + Generate button */}
-                <div className="flex items-center justify-between pt-2">
+                <div className="flex items-center justify-between pt-3 border-t border-zinc-200/40 dark:border-zinc-700/40">
                   <div className="flex items-center gap-2">
                     <ModelSelector
                       value={provider}
@@ -233,7 +235,7 @@ export default function AIPromptModal({
                   <Button
                     onClick={handleGenerate}
                     disabled={!prompt.trim() || loading}
-                    className="gap-2"
+                    className="gap-2 shadow-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]"
                   >
                     {loading ? (
                       <>

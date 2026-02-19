@@ -130,7 +130,7 @@ export default function EditorToolbar({ onThemeOpen }: EditorToolbarProps) {
 
   return (
     <TooltipProvider>
-      <div className="flex h-14 items-center border-b border-border bg-background px-3 gap-1">
+      <div className="flex h-14 items-center border-b border-zinc-200/60 dark:border-zinc-800/60 bg-background shadow-[0_1px_2px_0_rgb(0_0_0/0.03)] px-4 gap-1">
         {/* Left section */}
         <div className="flex items-center gap-2 min-w-0 flex-shrink-0">
           <Tooltip>
@@ -147,18 +147,18 @@ export default function EditorToolbar({ onThemeOpen }: EditorToolbarProps) {
           <Input
             value={presentation.title}
             onChange={(e) => updateTitle(e.target.value)}
-            className="h-8 w-56 border-transparent bg-transparent text-sm font-medium hover:border-border focus:border-border transition-colors"
+            className="h-8 w-60 border-transparent bg-transparent text-[15px] font-medium hover:border-zinc-200/60 dark:hover:border-zinc-700/60 focus:border-zinc-300 dark:focus:border-zinc-600 focus:ring-2 focus:ring-primary/10 transition-all duration-200 rounded-lg"
             placeholder="Untitled Presentation"
           />
 
-          <div className="h-4 w-px bg-border mx-1" />
+          <div className="h-4 w-px bg-zinc-200/60 dark:bg-zinc-700/60 mx-2" />
 
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8"
+                className="h-8 w-8 transition-all duration-200"
                 disabled={!canUndo}
                 onClick={undo}
               >
@@ -173,7 +173,7 @@ export default function EditorToolbar({ onThemeOpen }: EditorToolbarProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8"
+                className="h-8 w-8 transition-all duration-200"
                 disabled={!canRedo}
                 onClick={redo}
               >
@@ -224,7 +224,7 @@ export default function EditorToolbar({ onThemeOpen }: EditorToolbarProps) {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="h-4 w-px bg-border mx-1" />
+          <div className="h-4 w-px bg-zinc-200/60 dark:bg-zinc-700/60 mx-1.5" />
 
           <DropdownMenu>
             <Tooltip>
@@ -258,7 +258,7 @@ export default function EditorToolbar({ onThemeOpen }: EditorToolbarProps) {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="h-4 w-px bg-border mx-1" />
+          <div className="h-4 w-px bg-zinc-200/60 dark:bg-zinc-700/60 mx-1.5" />
 
           <DropdownMenu>
             <Tooltip>
@@ -323,11 +323,11 @@ export default function EditorToolbar({ onThemeOpen }: EditorToolbarProps) {
               <Button
                 variant="default"
                 size="sm"
-                className="h-8 gap-1.5"
+                className="h-8 gap-1.5 shadow-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]"
                 onClick={handlePresent}
               >
                 <Play className="h-3.5 w-3.5" />
-                <span className="text-xs">Present</span>
+                <span className="text-xs font-medium">Present</span>
               </Button>
             </TooltipTrigger>
             <TooltipContent>Start presentation (F5)</TooltipContent>

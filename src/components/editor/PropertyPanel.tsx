@@ -59,7 +59,7 @@ const FONT_SIZE_MAP: Record<string, number> = {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+    <h3 className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.08em]">
       {children}
     </h3>
   );
@@ -80,17 +80,17 @@ function SlideProperties() {
   if (!slide) return null;
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-3">
+    <div className="space-y-6">
+      <div className="space-y-4">
         <SectionHeader>Slide Properties</SectionHeader>
 
         <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">Layout</label>
+          <label className="text-xs text-zinc-500 dark:text-zinc-400">Layout</label>
           <Select
             value={slide.layout}
             disabled
           >
-            <SelectTrigger className="h-8 text-xs">
+            <SelectTrigger className="h-8 text-xs rounded-lg">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -104,7 +104,7 @@ function SlideProperties() {
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">
+          <label className="text-xs text-zinc-500 dark:text-zinc-400">
             Background Color
           </label>
           <div className="flex gap-2 items-center">
@@ -121,7 +121,7 @@ function SlideProperties() {
                   value: e.target.value,
                 })
               }
-              className="h-8 w-8 rounded border border-border cursor-pointer bg-transparent"
+              className="h-8 w-8 rounded-lg border border-zinc-200/60 dark:border-zinc-700/60 cursor-pointer bg-transparent transition-all duration-200 hover:scale-105"
             />
             <Input
               value={
@@ -136,21 +136,21 @@ function SlideProperties() {
                 })
               }
               placeholder="Use theme default"
-              className="h-8 text-xs flex-1"
+              className="h-8 text-xs flex-1 rounded-lg focus:ring-2 focus:ring-primary/20 transition-all duration-200"
             />
           </div>
         </div>
       </div>
 
-      <Separator />
+      <Separator className="bg-zinc-200/60 dark:bg-zinc-700/60" />
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         <SectionHeader>Speaker Notes</SectionHeader>
         <Textarea
           value={slide.speakerNotes}
           onChange={(e) => updateSpeakerNotes(slide.id, e.target.value)}
           placeholder="Add speaker notes..."
-          className="min-h-[100px] text-xs resize-none"
+          className="min-h-[100px] text-xs resize-none rounded-lg focus:ring-2 focus:ring-primary/20 transition-all duration-200"
         />
       </div>
     </div>
@@ -167,12 +167,12 @@ function TextBlockProperties({ block }: { block: TextBlock }) {
   const currentFontSize = FONT_SIZE_MAP[block.textStyle] || 18;
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-3">
+    <div className="space-y-6">
+      <div className="space-y-4">
         <SectionHeader>Text Properties</SectionHeader>
 
         <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">Text Style</label>
+          <label className="text-xs text-zinc-500 dark:text-zinc-400">Text Style</label>
           <Select
             value={block.textStyle}
             onValueChange={(value) =>
@@ -181,7 +181,7 @@ function TextBlockProperties({ block }: { block: TextBlock }) {
               } as Partial<ContentBlock>)
             }
           >
-            <SelectTrigger className="h-8 text-xs">
+            <SelectTrigger className="h-8 text-xs rounded-lg">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -196,8 +196,8 @@ function TextBlockProperties({ block }: { block: TextBlock }) {
 
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs text-muted-foreground">Font Size</label>
-            <span className="text-xs text-muted-foreground tabular-nums">
+            <label className="text-xs text-zinc-500 dark:text-zinc-400">Font Size</label>
+            <span className="text-xs text-zinc-400 dark:text-zinc-500 tabular-nums">
               {currentFontSize}px
             </span>
           </div>
@@ -223,7 +223,7 @@ function TextBlockProperties({ block }: { block: TextBlock }) {
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">Alignment</label>
+          <label className="text-xs text-zinc-500 dark:text-zinc-400">Alignment</label>
           <div className="flex gap-1">
             {(
               [
@@ -268,12 +268,12 @@ function ImageBlockProperties({ block }: { block: ImageBlock }) {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-3">
+    <div className="space-y-6">
+      <div className="space-y-4">
         <SectionHeader>Image Properties</SectionHeader>
 
         <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">Image URL</label>
+          <label className="text-xs text-zinc-500 dark:text-zinc-400">Image URL</label>
           <Input
             value={block.src}
             onChange={(e) =>
@@ -282,12 +282,12 @@ function ImageBlockProperties({ block }: { block: ImageBlock }) {
               } as Partial<ContentBlock>)
             }
             placeholder="https://..."
-            className="h-8 text-xs"
+            className="h-8 text-xs rounded-lg focus:ring-2 focus:ring-primary/20 transition-all duration-200"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">Alt Text</label>
+          <label className="text-xs text-zinc-500 dark:text-zinc-400">Alt Text</label>
           <Input
             value={block.alt}
             onChange={(e) =>
@@ -296,14 +296,14 @@ function ImageBlockProperties({ block }: { block: ImageBlock }) {
               } as Partial<ContentBlock>)
             }
             placeholder="Image description"
-            className="h-8 text-xs"
+            className="h-8 text-xs rounded-lg focus:ring-2 focus:ring-primary/20 transition-all duration-200"
           />
         </div>
 
         <Button
           variant="outline"
           size="sm"
-          className="w-full h-8 gap-1.5"
+          className="w-full h-8 gap-1.5 rounded-lg border-zinc-200/60 dark:border-zinc-700/60 hover:border-primary/40 transition-all duration-200"
           onClick={() => setImageSearchOpen(true)}
         >
           <ImageIcon className="h-3.5 w-3.5" />
@@ -333,13 +333,13 @@ export default function PropertyPanel() {
 
   return (
     <div className="flex flex-col h-full bg-background">
-      <div className="flex items-center px-3 py-2 border-b border-border">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+      <div className="flex items-center px-3 py-2.5 border-b border-zinc-200/60 dark:border-zinc-800/60">
+        <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
           {selectedBlock ? 'Element' : 'Slide'}
         </span>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-3">
+      <div className="flex-1 overflow-y-auto p-4">
         {selectedBlock?.type === 'text' ? (
           <TextBlockProperties block={selectedBlock as TextBlock} />
         ) : selectedBlock?.type === 'image' ? (

@@ -53,20 +53,26 @@ function SlideThumbnail({
   return (
     <button
       onClick={onClick}
-      className={`group relative w-full flex items-start gap-2 p-1.5 rounded-lg transition-colors ${
+      className={`group relative w-full flex items-start gap-2 p-1.5 rounded-lg transition-all duration-200 ease-out ${
         isSelected
-          ? 'bg-accent'
+          ? 'bg-primary/[0.04] dark:bg-primary/[0.08]'
           : 'hover:bg-muted/50'
       }`}
     >
-      <span className="text-[10px] text-muted-foreground font-medium mt-1 w-4 text-right flex-shrink-0">
+      {/* Left accent bar for selected state */}
+      <div className={`absolute left-0 top-2 bottom-2 w-[2.5px] rounded-full transition-all duration-200 ${
+        isSelected ? 'bg-primary opacity-100' : 'bg-transparent opacity-0'
+      }`} />
+      <span className={`text-[10px] font-medium mt-1 w-4 text-right flex-shrink-0 transition-colors duration-200 ${
+        isSelected ? 'text-primary' : 'text-muted-foreground'
+      }`}>
         {index + 1}
       </span>
       <div
-        className={`relative w-full aspect-video rounded-md border overflow-hidden transition-shadow ${
+        className={`relative w-full aspect-video rounded-lg border overflow-hidden transition-all duration-200 ${
           isSelected
-            ? 'border-primary ring-2 ring-primary/20 shadow-sm'
-            : 'border-border group-hover:border-muted-foreground/30'
+            ? 'border-primary/40 shadow-sm'
+            : 'border-zinc-200/60 dark:border-zinc-700/60 group-hover:border-zinc-300 dark:group-hover:border-zinc-600'
         }`}
         style={{ backgroundColor: bgColor }}
       >
@@ -126,17 +132,17 @@ export default function SlidePanel() {
 
   return (
     <div className="flex flex-col h-full bg-background">
-      <div className="flex items-center justify-between px-3 py-2 border-b border-border">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+      <div className="flex items-center justify-between px-3 py-2.5 border-b border-zinc-200/60 dark:border-zinc-800/60">
+        <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
           Slides
         </span>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-[11px] text-zinc-400 dark:text-zinc-500 tabular-nums">
           {presentation.slides.length}
         </span>
       </div>
 
-      <ScrollArea className="flex-1">
-        <div className="p-2 space-y-0.5">
+      <ScrollArea className="flex-1 relative">
+        <div className="p-2 space-y-1 pb-4">
           {presentation.slides.map((slide, index) => (
             <SlideThumbnail
               key={slide.id}
@@ -150,13 +156,13 @@ export default function SlidePanel() {
         </div>
       </ScrollArea>
 
-      <div className="p-2 border-t border-border">
+      <div className="p-2 border-t border-zinc-200/60 dark:border-zinc-800/60">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="w-full h-8 gap-1.5">
-              <Plus className="h-3.5 w-3.5" />
-              <span className="text-xs">Add Slide</span>
-            </Button>
+            <button className="w-full h-9 flex items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-zinc-200/80 dark:border-zinc-700/80 text-zinc-400 dark:text-zinc-500 hover:border-primary/40 hover:text-primary hover:bg-primary/[0.03] dark:hover:bg-primary/[0.06] transition-all duration-200 group">
+              <Plus className="h-3.5 w-3.5 transition-transform duration-200 group-hover:scale-110" />
+              <span className="text-xs font-medium">Add Slide</span>
+            </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="center" side="top">
             <DropdownMenuItem onClick={() => handleAddSlide('title')}>

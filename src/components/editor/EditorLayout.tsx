@@ -98,26 +98,33 @@ export default function EditorLayout() {
   if (!presentation) {
     return (
       <>
-        <div className="h-screen flex flex-col items-center bg-background overflow-auto">
-          <div className="w-full max-w-3xl mx-auto px-6 pt-16 pb-12">
-            <div className="text-center space-y-2 mb-8">
-              <h1 className="text-2xl font-semibold tracking-tight">
+        <div className="h-screen flex flex-col items-center bg-background dot-grid-bg overflow-auto">
+          <div className="w-full max-w-3xl mx-auto px-6 pt-20 pb-16">
+            <div className="text-center space-y-3 mb-10">
+              <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50" style={{ fontFamily: 'var(--font-sans)' }}>
                 Start a new presentation
               </h1>
-              <p className="text-sm text-muted-foreground">
-                Pick a template to get started, or create one from scratch
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
+                Create beautiful, professional presentations in minutes with AI assistance or start from a template.
               </p>
             </div>
 
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-10">
               <Button
                 onClick={() => setAiModalOpen(true)}
                 size="lg"
-                className="gap-2"
+                className="gap-2.5 h-12 px-8 text-sm font-medium shadow-sm animate-subtle-glow transition-all duration-200 hover:scale-[1.02]"
               >
                 <Sparkles className="h-4 w-4" />
                 Create with AI
               </Button>
+            </div>
+
+            {/* Divider */}
+            <div className="flex items-center gap-4 mb-10">
+              <div className="flex-1 h-px bg-zinc-200/60 dark:bg-zinc-700/60" />
+              <span className="text-xs font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">or choose a template</span>
+              <div className="flex-1 h-px bg-zinc-200/60 dark:bg-zinc-700/60" />
             </div>
 
             <TemplateGallery
@@ -146,7 +153,7 @@ export default function EditorLayout() {
         <div className="flex-1 flex overflow-hidden">
           {/* Left panel: Slide thumbnails */}
           <div
-            className={`border-r border-border transition-all duration-200 ease-in-out flex-shrink-0 overflow-hidden ${
+            className={`border-r border-zinc-200/60 dark:border-zinc-800/60 transition-all duration-200 ease-out flex-shrink-0 overflow-hidden ${
               leftPanelOpen ? 'w-60' : 'w-0'
             }`}
           >
@@ -205,7 +212,7 @@ export default function EditorLayout() {
 
           {/* Right panel: Properties */}
           <div
-            className={`border-l border-border transition-all duration-200 ease-in-out flex-shrink-0 overflow-hidden ${
+            className={`border-l border-zinc-200/60 dark:border-zinc-800/60 transition-all duration-200 ease-out flex-shrink-0 overflow-hidden ${
               rightPanelOpen ? 'w-70' : 'w-0'
             }`}
           >

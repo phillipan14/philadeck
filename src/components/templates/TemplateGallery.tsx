@@ -40,7 +40,7 @@ function ThemeColorStrip({ themeId }: { themeId: string }) {
   ];
 
   return (
-    <div className="flex h-2 w-full overflow-hidden rounded-t-lg">
+    <div className="flex h-2.5 w-full overflow-hidden rounded-t-xl">
       {colors.map((color, i) => (
         <div
           key={i}
@@ -62,20 +62,20 @@ function TemplateCard({
   return (
     <button
       onClick={onClick}
-      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card text-left transition-all hover:border-primary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-card text-left transition-all duration-200 ease-out hover:border-primary/40 hover:shadow-md hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
     >
       <ThemeColorStrip themeId={template.themeId} />
-      <div className="flex flex-1 flex-col gap-2 p-4">
+      <div className="flex flex-1 flex-col gap-2.5 p-5">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="text-sm font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
+          <h3 className="text-sm font-semibold leading-tight text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors duration-200">
             {template.name}
           </h3>
-          <span className="flex-shrink-0 inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+          <span className="flex-shrink-0 inline-flex items-center gap-1 rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
             <Layers className="h-3 w-3" />
             {template.slideCount}
           </span>
         </div>
-        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-2">
           {template.description}
         </p>
         <div className="mt-auto pt-2">
@@ -94,14 +94,14 @@ function BlankCard({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="group flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-border bg-card/50 p-8 transition-all hover:border-primary/50 hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[160px]"
+      className="group flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-zinc-200/80 dark:border-zinc-700/80 bg-card/30 p-8 transition-all duration-200 ease-out hover:border-primary/40 hover:bg-card hover:shadow-sm hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 min-h-[160px]"
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted transition-colors group-hover:bg-primary/10">
-        <Plus className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 transition-all duration-200 group-hover:bg-primary/10 group-hover:scale-110">
+        <Plus className="h-5 w-5 text-zinc-400 dark:text-zinc-500 group-hover:text-primary transition-colors duration-200" />
       </div>
       <div className="text-center">
-        <p className="text-sm font-medium text-foreground">Blank Presentation</p>
-        <p className="text-xs text-muted-foreground mt-0.5">Start from scratch</p>
+        <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">Blank Presentation</p>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Start from scratch</p>
       </div>
     </button>
   );
@@ -124,9 +124,9 @@ export default function TemplateGallery({
         value={activeTab}
         onValueChange={(v) => setActiveTab(v as Category)}
       >
-        <TabsList className="mb-4">
+        <TabsList className="mb-6 bg-zinc-100/80 dark:bg-zinc-800/80 p-1 rounded-lg">
           {(Object.keys(categoryLabels) as Category[]).map((cat) => (
-            <TabsTrigger key={cat} value={cat}>
+            <TabsTrigger key={cat} value={cat} className="rounded-md text-xs font-medium transition-all duration-200 data-[state=active]:shadow-sm">
               {categoryLabels[cat]}
             </TabsTrigger>
           ))}
@@ -135,7 +135,7 @@ export default function TemplateGallery({
         {(Object.keys(categoryLabels) as Category[]).map((cat) => (
           <TabsContent key={cat} value={cat}>
             <ScrollArea className="max-h-[60vh]">
-              <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3">
+              <div className="grid grid-cols-2 gap-5 pb-4 sm:grid-cols-3">
                 <BlankCard onClick={onCreateBlank} />
                 {filteredTemplates.map((template) => (
                   <TemplateCard
